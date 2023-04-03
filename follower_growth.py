@@ -71,12 +71,15 @@ def get_follower_growth(username, period='daily' ):
                 follower_growth[time_diff] += 1
             else:
                 follower_growth[time_diff] = 1
-        pagination_cursor = data['pagination']['cursor']
+        if 'cursor' in data['pagination'].keys():
+            pagination_cursor = data['pagination']['cursor']
+        else:
+            pagination_cursor = None
 
     return follower_growth
 
 if __name__ == "__main__":
-    username = "Bonjwa"
+    username = "Malterodactyl"
 
     growth = get_follower_growth(username, period='daily')
     print(f"Follower growth for {username}: {growth}")
